@@ -1,0 +1,24 @@
+body {
+  background-color: rgb(230, 230, 230);
+  font-family: sans-serif;
+}
+table {
+  display: none;
+  margin: 0 auto;
+  border-collapse: collapse;
+  text-transform: capitalize;
+}
+table caption {
+  font-weight: bold;
+  font-size: xx-large;
+  padding: 10px;
+}
+table th {
+  font-size: 1em;
+}
+#back {
+  font-size: x-large;
+  display: block;
+  padding: 10px;
+  margin: 10px auto;
+}
