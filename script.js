@@ -87,6 +87,9 @@ async function getdata() {
   <td>${body[ele]['meta']['population'] || zero}</td>
   </tr>
    `
+  document.querySelector(
+    '#india-updated'
+  ).innerHTML = `updated on ${body[ele]['meta']['date']}`
   document.querySelector('#india-table').insertAdjacentHTML('beforeend', item)
 }
 getdata()
@@ -96,6 +99,10 @@ function add(state) {
   let table = document.querySelector('#districts-table')
   let data1 = body[state]['districts']
   document.querySelector('#districts-content').innerHTML = ''
+  document.querySelector('#state-selected').innerHTML = states[state]
+  document.querySelector(
+    '#state-updated'
+  ).innerHTML = `updated on ${body[state]['meta']['date']}`
   Object.keys(data1).forEach((ele) => {
     const zero = '-'
     if (data1[ele].hasOwnProperty('delta')) {

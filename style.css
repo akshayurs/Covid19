@@ -55,6 +55,9 @@ table td {
   background: #d4d3d3;
   transition: all 0.2s ease;
 }
+.updated {
+  font-size: medium;
+}
 .state:hover,
 #back:hover {
   background: #2b385c;
