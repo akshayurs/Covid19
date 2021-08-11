@@ -38,6 +38,7 @@ function add(state) {
   document.querySelector('#back').style.display = 'block'
   let table = document.querySelector('#districts-table')
   let data1 = body[state]['districts']
+  document.querySelector('#districts-content').innerHTML = ''
   Object.keys(data1).forEach((ele) => {
     const zero = '0'
     if (data1[ele].hasOwnProperty('delta')) {
