@@ -5,7 +5,7 @@ var states = {
   AR: 'Arunanchal Pradesh',
   AS: 'Assam',
   BR: 'Bihar',
-  CG: 'Chhattisgarh',
+  CT: 'Chhattisgarh',
   CH: 'Chandigarh',
   DL: 'Delhi',
   DN: 'Dadra and Nagar Haveli',
