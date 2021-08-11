@@ -1,15 +1,21 @@
 :root {
   --background1: rgba(108, 117, 125, 0.063);
   --background2: #edeeef;
+  --background3: rgb(140, 161, 161);
 }
 body {
   background-color: var(--background2);
   font-family: sans-serif;
-  font-size: large;
+  margin: 0;
 }
 header h1 {
+  font-size: xx-large;
   text-align: center;
   margin: 0 auto;
+}
+header {
+  padding: 30px;
+  background-color: var(--background3);
 }
 table {
   margin: 0 auto;
@@ -21,9 +27,8 @@ table {
 }
 table caption {
   font-weight: bold;
-  font-size: xx-large;
+  font-size: x-large;
   padding: 15px;
-  text-transform: uppercase;
 }
 table th {
   font-size: 1em;
@@ -36,15 +41,20 @@ table th {
 }
 .table-headers {
   background-color: var(--background1);
-  font-size: x-large;
 }
 .state-name {
-  font-size: x-large;
-  color: teal;
+  color: rgb(37, 82, 82);
 }
 #back {
   font-size: x-large;
   display: none;
   padding: 10px;
   margin: 10px auto;
+}
+#info-msg {
+  color: rgb(56, 44, 44);
+}
+footer {
+  padding: 15px 0;
+  background: var(--background3);
 }

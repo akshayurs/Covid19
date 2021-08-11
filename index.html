@@ -3,17 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Document</title>
+    <title>Covid19</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header><h1>Covid19 India</h1></header>
+    <table id="india-table" border="1px" cellpadding="10px">
+      <caption>
+        INDIA
+      </caption>
+      <tr class="table-headers">
+        <th colspan="3">Daily</th>
+        <th colspan="6">Total</th>
+      </tr>
+      <tr class="table-headers">
+        <th>Confirmed</th>
+        <th>Deceased</th>
+        <th>recovered</th>
+        <th>Confirmed</th>
+        <th>Deceased</th>
+        <th>recovered</th>
+        <th>Tested</th>
+        <th>Vaccinated</th>
+        <th>Population</th>
+      </tr>
+    </table>
     <table id="states-table" border="1px" cellpadding="10px">
       <caption>
         States
       </caption>
       <tr class="table-headers">
-        <th rowspan="2">States</th>
+        <th rowspan="2">State/UT</th>
         <th colspan="3">Daily</th>
         <th colspan="6">Total</th>
       </tr>
@@ -34,7 +54,7 @@
         Districts
       </caption>
       <tr class="table-headers">
-        <th rowspan="2">Districts</th>
+        <th rowspan="2">District</th>
         <th colspan="3">Daily</th>
         <th colspan="6">Total</th>
       </tr>
@@ -53,5 +73,27 @@
     </table>
     <button onclick="back()" id="back">Go back</button>
     <script src="script.js"></script>
+    <center>
+      <h3 id="info-msg">Click on state to get more information about districts</h3>
+      <br />
+    <footer>
+        <h3>
+          Data from
+          <a href="https://api.covid19india.org/" target="_blank"
+            >api.covid19india.org</a
+          >
+        </h3>
+        <h3>Made By Akshay Urs</h3>
+        <div class="icons">
+          <a href="https://github.com/akshayurs" target="_blank"
+            ><img style="margin: 5px 10px" src="github.png" width="20px" /></a
+          ><a
+            href="https://www.linkedin.com/in/akshay-urs-m-808098212"
+            target="_blank"
+            ><img src="linkedIn.png" style="margin: 5px 10px" width="20px"
+          /></a>
+        </div>
+      </center>
+    </footer>
   </body>
 </html>
