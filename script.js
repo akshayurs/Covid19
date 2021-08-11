@@ -45,9 +45,9 @@ async function getdata() {
   let zero = '0'
   Object.keys(body).forEach((ele) => {
     if (body[ele].hasOwnProperty('delta') && ele != 'TT' && ele != 'UT') {
-      items += `<tr><th class=${
+      items += `<tr><th class='state ${
         body[ele].hasOwnProperty('districts') ? 'state-name' : ''
-      } data-state="${ele}">${states[ele]}</th><td>${
+      }' data-state="${ele}">${states[ele]}</th><td>${
         body[ele]['delta']['confirmed'] || zero
       }</td>
       <td>${body[ele]['delta']['deceased'] || zero}</td>

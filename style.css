@@ -1,7 +1,7 @@
 :root {
   --background1: rgba(108, 117, 125, 0.063);
   --background2: #edeeef;
-  --background3: rgb(140, 161, 161);
+  --background3: #8ca1a1;
 }
 body {
   background-color: var(--background2);
@@ -33,6 +33,9 @@ table caption {
 table th {
   font-size: 1em;
 }
+table td {
+  padding: 15px;
+}
 #states-table tr:nth-child(even):not(.table-headers) {
   background-color: var(--background1);
 }
@@ -43,13 +46,28 @@ table th {
   background-color: var(--background1);
 }
 .state-name {
-  color: rgb(37, 82, 82);
+  color: #2b385c;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+}
+.state {
+  background: #d4d3d3;
+  transition: all 0.2s ease;
+}
+.state:hover,
+#back:hover {
+  background: #2b385c;
+  color: white;
 }
 #back {
+  background: var(--background1);
   font-size: x-large;
   display: none;
   padding: 10px;
   margin: 10px auto;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 #info-msg {
   color: rgb(56, 44, 44);
@@ -58,4 +76,3 @@ footer {
   padding: 15px 0;
   background: var(--background3);
 }
-
