@@ -1,12 +1,14 @@
 body {
-  background-color: rgb(130, 230, 230);
+  background-color: lightgray;
   font-family: sans-serif;
 }
 table {
-  display: none;
   margin: 0 auto;
   border-collapse: collapse;
   text-transform: capitalize;
+}
+#districts-table {
+  display: none;
 }
 table caption {
   font-weight: bold;
@@ -16,9 +18,19 @@ table caption {
 table th {
   font-size: 1em;
 }
+#states-table tr:nth-child(even):not(.table-headers) {
+  background-color: rgb(255, 252, 248);
+}
+#districts-table tr:nth-child(even):not(.table-headers) {
+  background-color: rgb(255, 252, 248);
+}
+.table-headers {
+  background-color: rgb(199, 199, 199);
+}
+
 #back {
   font-size: x-large;
-  display: block;
+  display: none;
   padding: 10px;
   margin: 10px auto;
 }
