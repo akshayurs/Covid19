@@ -54,17 +54,18 @@
         <th colspan="3">Daily</th>
         <th colspan="6">Total</th>
       </tr>
-      <tr class="table-headers">
-        <th>Active</th>
-        <th>Deaths</th>
-        <th>Discharged</th>
-        <th>Active</th>
-        <th>Deaths</th>
-        <th>Discharged</th>
-        <th>Tested</th>
-        <th>Vaccinated</th>
-        <th>Population</th>
+      <tr class="table-headers clickable">
+        <th onclick="sortData('deltaConfirmed')">Active </th>
+        <th onclick="sortData('deltaDeceased')">Deaths </th>
+        <th onclick="sortData('deltaRecovered')">Discharged </th>
+        <th onclick="sortData('totalConfirmed')">Active </th>
+        <th onclick="sortData('totalDeceased')">Deaths </th>
+        <th onclick="sortData('totalRecovered')">Discharged </th>
+        <th onclick="sortData('totalTested')">Tested </th>
+        <th onclick="sortData('totalVaccinated')">Vaccinated </th>
+        <th onclick="sortData('metaPopulation')">Population </th>
       </tr>
+      <tbody id="states-content"></tbody>
     </table>
     <table id="districts-table" border="1px" cellpadding="10px">
       <caption>
@@ -93,13 +94,17 @@
     <button onclick="back()" id="back">Go back</button>
     <script src="script.js"></script>
     <center>
-      <h3 id="info-msg">Click on state to get more information about districts</h3>
+      <h3 id="info-msg">Click on state to get more information about districts
+        <br>
+        <br>
+        Click on the titles to sort data
+      </h3>
       <br />
     <footer>
         <h3>
           Data from
-          <a href="https://api.covid19india.org/" target="_blank"
-            >api.covid19india.org</a
+          <a href="https://data.covid19india.org/" target="_blank"
+            >data.covid19india.org</a
           >
         </h3>
         <h3>Made By Akshay Urs</h3>

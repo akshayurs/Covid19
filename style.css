@@ -7,6 +7,10 @@ body {
   background-color: var(--background2);
   font-family: sans-serif;
   margin: 0;
+  overflow-x: hidden;
+}
+#india-table th {
+  font-size: large;
 }
 header h1 {
   font-size: xx-large;
@@ -35,7 +39,7 @@ table th {
   font-size: 1em;
 }
 table td {
-  padding: 15px;
+  padding: 14px;
 }
 #states-table tr:nth-child(even):not(.table-headers) {
   background-color: var(--background1);
@@ -46,11 +50,19 @@ table td {
 .table-headers {
   background-color: var(--background1);
 }
+.table-headers.clickable th {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #2b385c;
+  letter-spacing: 1px;
+  user-select: none;
+}
 .state-name {
   color: #2b385c;
   text-decoration: underline;
   font-weight: bold;
   cursor: pointer;
+  letter-spacing: 1px;
 }
 .state {
   background: #d4d3d3;
@@ -80,4 +92,17 @@ table td {
 footer {
   padding: 15px 0;
   background: var(--background3);
+}
+@media (max-width: 1000px) {
+  table td {
+    padding: 18px 10px 18px 10px;
+  }
+  .state-name {
+    font-weight: 400;
+    font-size: large;
+    letter-spacing: 1px;
+  }
+  header h1 {
+    font-size: 50px;
+  }
 }

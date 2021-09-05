@@ -1,4 +1,6 @@
 var body = ''
+var covidData = {}
+var sortedOption = ''
 var states = {
   AP: 'Andra Pradesh',
   AN: 'Andaman and Nicobar Islands',
@@ -41,36 +43,33 @@ var states = {
 async function getdata() {
   let data = await fetch('https://data.covid19india.org/v4/min/data.min.json')
   body = await data.json()
-  console.log(body)
-  let items = ''
   let zero = '0'
   Object.keys(body).forEach((ele) => {
-    if (body[ele].hasOwnProperty('delta') && ele != 'TT' && ele != 'UT') {
-      items += `<tr><th class='state ${
-        body[ele].hasOwnProperty('districts') ? 'state-name' : ''
-      }' data-state="${ele}">${states[ele]}</th><td>${
-        body[ele]['delta']['confirmed'] || zero
-      }</td>
-      <td>${body[ele]['delta']['deceased'] || zero}</td>
-      <td>${body[ele]['delta']['recovered'] || zero}</td>
-      <td>${body[ele]['total']['confirmed'] || zero}</td>
-      <td>${body[ele]['total']['deceased'] || zero}</td>
-      <td>${body[ele]['total']['recovered'] || zero}</td>
-      <td>${body[ele]['total']['tested'] || zero}</td>
-      <td>${
-        body[ele]['total']['vaccinated1'] + body[ele]['total']['vaccinated1'] ||
-        zero
-      }</td>
-      <td>${body[ele]['meta']['population'] || zero}</td>
-      </tr>
-       `
+    let deltaConfirmed = body[ele].delta?.confirmed ?? zero
+    let deltaDeceased = body[ele]?.delta?.deceased ?? zero
+    let deltaRecovered = body[ele]?.delta?.recovered ?? zero
+    let totalConfirmed = body[ele]?.total?.confirmed ?? zero
+    let totalDeceased = body[ele]?.total?.deceased ?? zero
+    let totalRecovered = body[ele]?.total?.recovered ?? zero
+    let totalTested = body[ele]?.total?.tested ?? zero
+    let totalVaccinated =
+      body[ele]?.total?.vaccinated1 + body[ele]?.total?.vaccinated1 ?? zero
+    let metaPopulation = body[ele]?.meta?.population ?? zero
+
+    if (states[ele]) {
+      covidData[states[ele]] = {
+        code: ele,
+        deltaConfirmed,
+        deltaDeceased,
+        deltaRecovered,
+        totalConfirmed,
+        totalDeceased,
+        totalRecovered,
+        totalTested,
+        totalVaccinated,
+        metaPopulation,
+      }
     }
-  })
-  document.querySelector('#states-table').insertAdjacentHTML('beforeend', items)
-  document.querySelectorAll('.state-name').forEach((ele) => {
-    ele.addEventListener('click', (e) => {
-      add(e.target.getAttribute('data-state'))
-    })
   })
   let ele = 'TT'
   let item = `<tr><td>${body[ele]['delta']['confirmed'] || zero}</td>
@@ -91,8 +90,36 @@ async function getdata() {
     '#india-updated'
   ).innerHTML = `updated on ${body[ele]['meta']['date']}`
   document.querySelector('#india-table').insertAdjacentHTML('beforeend', item)
+  addStatesToDOM(Object.keys(covidData))
 }
 getdata()
+
+function addStatesToDOM(keysArray) {
+  document.querySelector('#states-content').innerHTML = ''
+  let items = ''
+  keysArray.forEach((ele) => {
+    items += `<tr><th class='state state-name' data-state="${covidData[ele].code}">${ele}</th><td>${covidData[ele].deltaConfirmed}</td>
+      <td>${covidData[ele].deltaDeceased}</td>
+      <td>${covidData[ele].deltaRecovered}</td>
+      <td>${covidData[ele].totalConfirmed}</td>
+      <td>${covidData[ele].totalDeceased}</td>
+      <td>${covidData[ele].totalRecovered}</td>
+      <td>${covidData[ele].totalTested}</td>
+      <td>${covidData[ele].totalVaccinated}</td>
+      <td>${covidData[ele].metaPopulation}</td>
+      </tr>
+       `
+  })
+  document
+    .querySelector('#states-content')
+    .insertAdjacentHTML('beforeend', items)
+  document.querySelectorAll('.state-name').forEach((ele) => {
+    ele.addEventListener('click', (e) => {
+      navigator.vibrate(20)
+      add(e.target.getAttribute('data-state'))
+    })
+  })
+}
 
 function add(state) {
   document.querySelector('#back').style.display = 'block'
@@ -137,9 +164,27 @@ function add(state) {
 }
 
 function back() {
+  navigator.vibrate(20)
   document.querySelector('#states-table').style.display = 'table'
   document.querySelector('#india-table').style.display = 'table'
   document.querySelector('#info-msg').style.display = 'block'
   document.querySelector('#districts-table').style.display = 'none'
   document.querySelector('#back').style.display = 'none'
+}
+function sortData(option) {
+  navigator.vibrate(20)
+  let newCovidData = { ...covidData }
+  if (sortedOption == option) {
+    let sortedKeys = Object.keys(newCovidData).sort(function (a, b) {
+      return newCovidData[a][option] - newCovidData[b][option]
+    })
+    addStatesToDOM(sortedKeys)
+    sortedOption = ''
+  } else {
+    let sortedKeys = Object.keys(newCovidData).sort(function (a, b) {
+      return newCovidData[b][option] - newCovidData[a][option]
+    })
+    addStatesToDOM(sortedKeys)
+    sortedOption = option
+  }
 }
