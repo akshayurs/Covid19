@@ -16,6 +16,7 @@ header h1 {
 header {
   padding: 30px;
   background-color: var(--background3);
+  box-shadow: 0 0 10px black;
 }
 table {
   margin: 0 auto;
@@ -57,6 +58,7 @@ table td {
 }
 .updated {
   font-size: medium;
+  color: ;
 }
 .state:hover,
 #back:hover {

@@ -39,8 +39,9 @@ var states = {
   WB: 'West Bengal',
 }
 async function getdata() {
-  let data = await fetch('https://api.covid19india.org/v4/min/data.min.json')
+  let data = await fetch('https://data.covid19india.org/v4/min/data.min.json')
   body = await data.json()
+  console.log(body)
   let items = ''
   let zero = '0'
   Object.keys(body).forEach((ele) => {
@@ -65,7 +66,6 @@ async function getdata() {
        `
     }
   })
-
   document.querySelector('#states-table').insertAdjacentHTML('beforeend', items)
   document.querySelectorAll('.state-name').forEach((ele) => {
     ele.addEventListener('click', (e) => {
