@@ -3,6 +3,9 @@
   --background2: #edeeef;
   --background3: #8ca1a1;
 }
+.updating-data{
+  display: none;
+}
 body {
   background-color: var(--background2);
   font-family: sans-serif;
@@ -52,7 +55,8 @@ table td {
 .table-headers {
   background-color: var(--background1);
 }
-.state-sort {
+.state-sort,
+.districts-sort {
   color: #2b385c;
 }
 .table-headers.clickable th {

@@ -60,6 +60,17 @@ document.addEventListener('click', (e) => {
       addStatesToDOM(Object.keys(covidData).reverse())
       sortedOption = 'state'
     }
+  } else if (
+    e.target.matches('.districts-sort') ||
+    e.target.parentElement.matches('.districts-sort')
+  ) {
+    if (sortedOption == 'districts') {
+      addDistrictsToDOM(Object.keys(statesData))
+      sortedOption = ''
+    } else {
+      addDistrictsToDOM(Object.keys(statesData).reverse())
+      sortedOption = 'districts'
+    }
   }
 })
 
@@ -71,6 +82,9 @@ async function getdata() {
     document.querySelector('.loading').innerHTML = ':-( ERROR 👾'
   }
   let zero = '0'
+  if (Object.keys(body).length < 20) {
+    document.querySelector('.updating-data').style.display = 'block'
+  }
   Object.keys(body).forEach((ele) => {
     let deltaConfirmed = body[ele].delta?.confirmed ?? zero
     let deltaDeceased = body[ele]?.delta?.deceased ?? zero
