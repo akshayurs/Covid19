@@ -53,13 +53,9 @@ table td {
 }
 .table-headers.clickable th {
   cursor: pointer;
-  text-decoration: underline;
   color: #2b385c;
   letter-spacing: 1px;
   user-select: none;
-}
-.table-headers.clickable th .arrow{
-  text-decoration: none;
 }
 .state-name {
   color: #2b385c;
