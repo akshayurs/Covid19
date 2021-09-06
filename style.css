@@ -59,7 +59,7 @@ table td {
   user-select: none;
 }
 .table-headers.clickable th::after{
-  content: "⇕";
+  content: "<br>⇕";
   text-decoration: none!important;
 }
 .state-name {
