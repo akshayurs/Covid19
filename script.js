@@ -41,9 +41,20 @@ var states = {
   UP: 'Uttar Pradesh',
   WB: 'West Bengal',
 }
+
+document.addEventListener('click', (e) => {
+  if (e.target.matches('.state')) {
+    navigator.vibrate(20)
+    add(e.target.dataset.state)
+  } else if (e.target.parentElement.matches('.state')) {
+    navigator.vibrate(20)
+    add(e.target.parentElement.dataset.state)
+  }
+})
+
 async function getdata() {
   try {
-    let data = await fetch('https://data.covid19india.org/v4/min/data.min.json')
+    data = await fetch('https://data.covid19india.org/v4/min/data.min.json')
     body = await data.json()
   } catch {
     document.querySelector('.loading').innerHTML = ':-( ERROR 👾'
@@ -118,12 +129,6 @@ function addStatesToDOM(keysArray) {
   document
     .querySelector('#states-content')
     .insertAdjacentHTML('beforeend', items)
-  document.querySelectorAll('.state-name').forEach((ele) => {
-    ele.addEventListener('click', (e) => {
-      navigator.vibrate(20)
-      add(e.target.getAttribute('data-state'))
-    })
-  })
 }
 
 function addDistrictsToDOM(keysArray) {

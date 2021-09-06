@@ -62,6 +62,7 @@ table td {
   font-weight: bold;
   cursor: pointer;
   letter-spacing: 1px;
+  user-select: none;
 }
 .loading {
   text-align: center;
