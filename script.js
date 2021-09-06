@@ -49,6 +49,17 @@ document.addEventListener('click', (e) => {
   } else if (e.target.parentElement.matches('.state')) {
     navigator.vibrate(20)
     add(e.target.parentElement.dataset.state)
+  } else if (
+    e.target.matches('.state-sort') ||
+    e.target.parentElement.matches('.state-sort')
+  ) {
+    if (sortedOption == 'state') {
+      addStatesToDOM(Object.keys(covidData))
+      sortedOption = ''
+    } else {
+      addStatesToDOM(Object.keys(covidData).reverse())
+      sortedOption = 'state'
+    }
   }
 })
 
@@ -114,7 +125,8 @@ function addStatesToDOM(keysArray) {
   document.querySelector('#states-content').innerHTML = ''
   let items = ''
   keysArray.forEach((ele) => {
-    items += `<tr><th class='state state-name' data-state="${covidData[ele].code}">➤<u>${ele}</u></th><td>${covidData[ele].deltaConfirmed}</td>
+    items += `<tr> <th class="state" data-state="${covidData[ele].code}">➤<u>${ele}</u></th>
+     <td>${covidData[ele].deltaConfirmed}</td>
       <td>${covidData[ele].deltaDeceased}</td>
       <td>${covidData[ele].deltaRecovered}</td>
       <td>${covidData[ele].totalConfirmed}</td>

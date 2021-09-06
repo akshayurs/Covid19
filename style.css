@@ -27,6 +27,7 @@ table {
   margin: 0 auto;
   border-collapse: collapse;
   text-transform: capitalize;
+  transition: all 1s;
 }
 #districts-table {
   display: none;
@@ -51,16 +52,12 @@ table td {
 .table-headers {
   background-color: var(--background1);
 }
+.state-sort {
+  color: #2b385c;
+}
 .table-headers.clickable th {
   cursor: pointer;
   color: #2b385c;
-  letter-spacing: 1px;
-  user-select: none;
-}
-.state-name {
-  color: #2b385c;
-  font-weight: bold;
-  cursor: pointer;
   letter-spacing: 1px;
   user-select: none;
 }
@@ -69,8 +66,13 @@ table td {
   font-size: 40px;
 }
 .state {
+  font-weight: bold;
+  letter-spacing: 1px;
+  user-select: none;
+  color: #2b385c;
   background: #d4d3d3;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 .updated {
   font-size: medium;
