@@ -1,6 +1,7 @@
 var body = ''
 var covidData = {}
 var sortedOption = ''
+var statesData = {}
 var states = {
   AP: 'Andra Pradesh',
   AN: 'Andaman and Nicobar Islands',
@@ -121,6 +122,27 @@ function addStatesToDOM(keysArray) {
   })
 }
 
+function addDistrictsToDOM(keysArray) {
+  document.querySelector('#districts-content').innerHTML = ''
+  keysArray.forEach((ele) => {
+    let e = `<tr><th>${ele}</th>
+      <td>${statesData[ele].deltaConfirmed}</td>
+      <td>${statesData[ele].deltaDeceased}</td>
+      <td>${statesData[ele].deltaRecovered}</td>
+      <td>${statesData[ele].totalConfirmed}</td>
+      <td>${statesData[ele].totalDeceased}</td>
+      <td>${statesData[ele].totalRecovered}</td>
+      <td>${statesData[ele].totalTested}</td>
+      <td>${statesData[ele].totalVaccinated}</td>
+      <td>${statesData[ele].metaPopulation}</td>
+      </tr>
+           `
+    document
+      .querySelector('#districts-content')
+      .insertAdjacentHTML('beforeend', e)
+  })
+}
+
 function add(state) {
   document.querySelector('#back').style.display = 'block'
   let table = document.querySelector('#districts-table')
@@ -130,33 +152,33 @@ function add(state) {
   document.querySelector(
     '#state-updated'
   ).innerHTML = `updated on ${body[state]['meta']['date']}`
+  const zero = '0'
+  statesData = {}
   Object.keys(data1).forEach((ele) => {
-    const zero = '-'
-    if (data1[ele].hasOwnProperty('delta')) {
-      let e = `<tr><th>${ele}</th>
-      <td>${data1[ele]['delta']['confirmed'] || zero}</td>
-      <td>${data1[ele]['delta']['deceased'] || zero}</td> 
-      <td>${data1[ele]['delta']['recovered'] || zero}</td>
-      <td>${data1[ele]['total']['confirmed'] || zero}</td>
-      <td>${data1[ele]['total']['deceased'] || zero}</td>
-      <td>${data1[ele]['total']['recovered'] || zero}</td>
-      <td>${data1[ele]['total']['tested'] || zero}</td>
-      <td>${
-        data1[ele]['total']['vaccinated1'] +
-          data1[ele]['total']['vaccinated1'] || zero
-      }</td>
-      <td>${
-        data1[ele].hasOwnProperty('meta')
-          ? data1[ele]['meta']['population'] || zero
-          : '-'
-      }</td>
-           </tr>
-           `
-      document
-        .querySelector('#districts-content')
-        .insertAdjacentHTML('beforeend', e)
+    let deltaConfirmed = data1[ele].delta?.confirmed ?? zero
+    let deltaDeceased = data1[ele].delta?.deceased ?? zero
+    let deltaRecovered = data1[ele].delta?.recovered ?? zero
+    let totalConfirmed = data1[ele].total?.confirmed ?? zero
+    let totalDeceased = data1[ele].total?.deceased ?? zero
+    let totalRecovered = data1[ele].total?.recovered ?? zero
+    let totalTested = data1[ele].total?.tested ?? zero
+    let totalVaccinated =
+      data1[ele].total?.vaccinated1 + data1[ele].total?.vaccinated1 ?? zero
+    let metaPopulation = data1[ele].meta?.population ?? zero
+
+    statesData[ele] = {
+      deltaConfirmed,
+      deltaDeceased,
+      deltaRecovered,
+      totalConfirmed,
+      totalDeceased,
+      totalRecovered,
+      totalTested,
+      totalVaccinated,
+      metaPopulation,
     }
   })
+  addDistrictsToDOM(Object.keys(data1))
   table.style.display = 'table'
   document.querySelector('#states-table').style.display = 'none'
   document.querySelector('#india-table').style.display = 'none'
@@ -171,20 +193,26 @@ function back() {
   document.querySelector('#districts-table').style.display = 'none'
   document.querySelector('#back').style.display = 'none'
 }
-function sortData(option) {
+function sortData(option, state) {
   navigator.vibrate(20)
-  let newCovidData = { ...covidData }
+  if (state) {
+    var newCovidData = { ...covidData }
+    var updateDOM = addStatesToDOM
+  } else {
+    var newCovidData = { ...statesData }
+    var updateDOM = addDistrictsToDOM
+  }
   if (sortedOption == option) {
     let sortedKeys = Object.keys(newCovidData).sort(function (a, b) {
       return newCovidData[a][option] - newCovidData[b][option]
     })
-    addStatesToDOM(sortedKeys)
+    updateDOM(sortedKeys)
     sortedOption = ''
   } else {
     let sortedKeys = Object.keys(newCovidData).sort(function (a, b) {
       return newCovidData[b][option] - newCovidData[a][option]
     })
-    addStatesToDOM(sortedKeys)
+    updateDOM(sortedKeys)
     sortedOption = option
   }
 }
