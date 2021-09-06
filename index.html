@@ -55,17 +55,23 @@
         <th colspan="6">Total</th>
       </tr>
       <tr class="table-headers clickable">
-        <th onclick="sortData('deltaConfirmed',true)">Active<div class="arrow">⇕</div></th>
-        <th onclick="sortData('deltaDeceased',true)">Deaths <div class="arrow">⇕</div></th>
-        <th onclick="sortData('deltaRecovered',true)">Discharged <div class="arrow">⇕</div></th>
-        <th onclick="sortData('totalConfirmed',true)">Active<div class="arrow">⇕</div> </th>
-        <th onclick="sortData('totalDeceased',true)">Deaths <div class="arrow">⇕</div></th>
-        <th onclick="sortData('totalRecovered',true)">Discharged <div class="arrow">⇕</div></th>
-        <th onclick="sortData('totalTested',true)">Tested <div class="arrow">⇕</div></th>
-        <th onclick="sortData('totalVaccinated',true)">Vaccinated<div class="arrow">⇕</div> </th>
-        <th onclick="sortData('metaPopulation',true)">Population<div class="arrow">⇕</div> </th>
+        <th onclick="sortData('deltaConfirmed',true)"><u>Active</u><div class="arrow">⇕</div></th>
+        <th onclick="sortData('deltaDeceased',true)"><u>Deaths</u> <div class="arrow">⇕</div></th>
+        <th onclick="sortData('deltaRecovered',true)"><u>Discharged</u> <div class="arrow">⇕</div></th>
+        <th onclick="sortData('totalConfirmed',true)"><u>Active</u><div class="arrow">⇕</div> </th>
+        <th onclick="sortData('totalDeceased',true)"><u>Deaths</u> <div class="arrow">⇕</div></th>
+        <th onclick="sortData('totalRecovered',true)"><u>Discharged</u><div class="arrow">⇕</div></th>
+        <th onclick="sortData('totalTested',true)"><u>Tested</u> <div class="arrow">⇕</div></th>
+        <th onclick="sortData('totalVaccinated',true)"><u>Vaccinated</u><div class="arrow">⇕</div> </th>
+        <th onclick="sortData('metaPopulation',true)"><u>Population</u><div class="arrow">⇕</div> </th>
       </tr>
-      <tbody id="states-content"></tbody>
+      <tbody id="states-content">
+        <tr>
+          <td colspan="10" class="loading">
+            LOADING... PLEASE WAIT ⏳
+          </td>
+        </tr>
+      </tbody>
     </table>
     <table id="districts-table" border="1px" cellpadding="10px">
       <caption>
@@ -79,17 +85,19 @@
         <th colspan="6">Total</th>
       </tr>
       <tr class="table-headers clickable">
-        <th onclick="sortData('deltaConfirmed',false)">Active<div class="arrow">⇕</div> </th>
-        <th onclick="sortData('deltaDeceased',false)">Deaths <div class="arrow">⇕</div></th>
-        <th onclick="sortData('deltaRecovered',false)">Discharged <div class="arrow">⇕</div></th>
-        <th onclick="sortData('totalConfirmed',false)">Active <div class="arrow">⇕</div></th>
-        <th onclick="sortData('totalDeceased',false)">Deaths <div class="arrow">⇕</div></th>
-        <th onclick="sortData('totalRecovered',false)">Discharged <div class="arrow">⇕</div></th>
-        <th onclick="sortData('totalTested',false)">Tested <div class="arrow">⇕</div></th>
-        <th onclick="sortData('totalVaccinated',false)">Vaccinated <div class="arrow">⇕</div></th>
-        <th onclick="sortData('metaPopulation',false)">Population <div class="arrow">⇕</div></th>
+        <th onclick="sortData('deltaConfirmed',false)"><u>Active</u><div class="arrow">⇕</div> </th>
+        <th onclick="sortData('deltaDeceased',false)"><u>Deaths</u> <div class="arrow">⇕</div></th>
+        <th onclick="sortData('deltaRecovered',false)"><u>Discharged</u> <div class="arrow">⇕</div></th>
+        <th onclick="sortData('totalConfirmed',false)"><u>Active</u> <div class="arrow">⇕</div></th>
+        <th onclick="sortData('totalDeceased',false)"><u>Deaths</u> <div class="arrow">⇕</div></th>
+        <th onclick="sortData('totalRecovered',false)"><u>Discharged</u> <div class="arrow">⇕</div></th>
+        <th onclick="sortData('totalTested',false)"><u>Tested</u> <div class="arrow">⇕</div></th>
+        <th onclick="sortData('totalVaccinated',false)"><u>Vaccinated</u> <div class="arrow">⇕</div></th>
+        <th onclick="sortData('metaPopulation',false)"><u>Population</u> <div class="arrow">⇕</div></th>
       </tr>
-      <tbody id="districts-content"></tbody>
+      <tbody id="districts-content">
+        </tr>
+      </tbody>
     </table>
     <button onclick="back()" id="back">Go back</button>
     <script src="script.js"></script>

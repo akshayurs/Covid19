@@ -42,8 +42,12 @@ var states = {
   WB: 'West Bengal',
 }
 async function getdata() {
-  let data = await fetch('https://data.covid19india.org/v4/min/data.min.json')
-  body = await data.json()
+  try {
+    let data = await fetch('https://data.covid19india.org/v4/min/data.min.json')
+    body = await data.json()
+  } catch {
+    document.querySelector('.loading').innerHTML = ':-( ERROR 👾'
+  }
   let zero = '0'
   Object.keys(body).forEach((ele) => {
     let deltaConfirmed = body[ele].delta?.confirmed ?? zero
@@ -99,7 +103,7 @@ function addStatesToDOM(keysArray) {
   document.querySelector('#states-content').innerHTML = ''
   let items = ''
   keysArray.forEach((ele) => {
-    items += `<tr><th class='state state-name' data-state="${covidData[ele].code}">${ele}</th><td>${covidData[ele].deltaConfirmed}</td>
+    items += `<tr><th class='state state-name' data-state="${covidData[ele].code}">➤<u>${ele}</u></th><td>${covidData[ele].deltaConfirmed}</td>
       <td>${covidData[ele].deltaDeceased}</td>
       <td>${covidData[ele].deltaRecovered}</td>
       <td>${covidData[ele].totalConfirmed}</td>
