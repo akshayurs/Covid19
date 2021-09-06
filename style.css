@@ -59,7 +59,7 @@ table td {
   user-select: none;
 }
 .table-headers.clickable th .arrow{
-  text-decoration: none!important;
+  text-decoration: none;
 }
 .state-name {
   color: #2b385c;
