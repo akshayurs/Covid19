@@ -58,8 +58,7 @@ table td {
   letter-spacing: 1px;
   user-select: none;
 }
-.table-headers.clickable th::after{
-  content: "<br>⇕";
+.table-headers.clickable th .arrow{
   text-decoration: none!important;
 }
 .state-name {
