@@ -59,8 +59,8 @@ table td {
   user-select: none;
 }
 .table-headers.clickable th::after{
-  content: "&#8661;";
-  text-decoration: none;
+  content: "⇕";
+  text-decoration: none!important;
 }
 .state-name {
   color: #2b385c;
